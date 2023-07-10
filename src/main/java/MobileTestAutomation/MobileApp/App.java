@@ -5,6 +5,7 @@ package MobileTestAutomation.MobileApp;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,8 @@ public class App
         }
         catch(Exception e)
         {
+        	if(driver!=null)
+        		driver.quit();
         	System.out.println("Failed with exception: "+e.getMessage());
         }
     }
@@ -39,21 +42,21 @@ public class App
     static void loginToApplication() throws Exception {
     	if(launchApplication()) {
     		System.out.println("Login Action Started");
-    		WebElement engE1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.TextView")));
+    		WebElement engE1=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//*[(@text='Eng')]")));
     		engE1.click();
     		WebElement proceedBtn=driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]"));
     		proceedBtn.click();
     		
-    		WebElement weekSelect=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]")));
+    		WebElement weekSelect=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[(@text='Week 4')]")));
     		weekSelect.click();
     		
-    		WebElement weekSubmitBtn=driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView"));
+    		WebElement weekSubmitBtn=driver.findElement(By.xpath("//*[(@text='Submit')]"));
     		weekSubmitBtn.click();
     		
     		WebElement unselectNumber=driver.findElement(By.id("com.google.android.gms:id/cancel"));
     		unselectNumber.click();
     		
-    		WebElement signInBtn=driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView"));
+    		WebElement signInBtn=driver.findElement(By.xpath("//*[(@text='Sign in with Google')]"));
     		signInBtn.click();
     		
     		WebElement selectAcc=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]")));
