@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 
@@ -59,8 +60,37 @@ public class App
     		WebElement signInBtn=driver.findElement(By.xpath("//*[(@text='Sign in with Google')]"));
     		signInBtn.click();
     		
-    		WebElement selectAcc=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.support.v7.widget.RecyclerView/android.widget.LinearLayout[1]")));
-    		selectAcc.click();
+    		WebElement addgmailAccount=driver.findElement(By.xpath("//*[(@text='Add another account')]"));
+    		addgmailAccount.click();
+    		
+    		WebElement usePin=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[(@text='Use PIN')]")));
+    		usePin.click();
+    		
+    		WebElement pinTxtBox=driver.findElement(By.id("com.samsung.android.biometrics.app.setting:id/lockPassword"));
+    		pinTxtBox.sendKeys("1018");
+    		
+    		WebElement emailTxtBox=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='android.widget.EditText' and @resource-id='identifierId']")));
+    		emailTxtBox.sendKeys("usert2559@gmail.com");
+    		
+    		WebElement nextBtn=driver.findElement(By.xpath("//*[(@text='Next')]"));
+    		nextBtn.click();
+    		    	
+    		Thread.sleep(5000);
+    		
+    		WebElement pwdTxtBox=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='android.widget.EditText' and @displayed='true']")));
+    		pwdTxtBox.sendKeys("Test@123");
+    		
+    		WebElement nextBtn1=driver.findElement(By.xpath("//*[(@text='Next')]"));
+    		nextBtn1.click();
+    		
+    		Thread.sleep(3000);
+    		
+    		scrollAndClick("Skip");
+    		
+    		
+    		WebElement acceptTOS=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[(@text='I agree')]")));
+    		acceptTOS.click();
+	
     		//Login Action Completed
     		
     		Thread.sleep(10000);
@@ -98,7 +128,7 @@ public class App
     	URL url=new URL("http://127.0.0.1:4723/wd/hub");
     	driver=new AppiumDriver(url,cap);
     	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10)) ;
-    	wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+    	wait=new WebDriverWait(driver, Duration.ofSeconds(20));
     	System.out.println("Application Started");
     	}
     	catch(Exception e)
@@ -108,6 +138,11 @@ public class App
     	}
     	return true;
     }
+    
+    public static void scrollAndClick(String visibleText) {
+    	driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\""+visibleText+"\").instance(0))")).click();
+   }
+       
     
    
 }
