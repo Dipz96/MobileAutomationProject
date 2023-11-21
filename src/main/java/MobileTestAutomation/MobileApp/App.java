@@ -67,7 +67,7 @@ public class App
     		usePin.click();
     		
     		WebElement pinTxtBox=driver.findElement(By.id("com.samsung.android.biometrics.app.setting:id/lockPassword"));
-    		pinTxtBox.sendKeys("1018");
+    		pinTxtBox.sendKeys("****");
     		
     		WebElement emailTxtBox=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='android.widget.EditText' and @resource-id='identifierId']")));
     		emailTxtBox.sendKeys("usert2559@gmail.com");
@@ -119,7 +119,7 @@ public class App
     	DesiredCapabilities cap=new DesiredCapabilities();
     	try {
     	cap.setCapability("deviceName", "GalaxyM51");
-    	cap.setCapability("udid", "RZ8NA0T713R");
+    	cap.setCapability("udid", "***");
     	cap.setCapability("platformName", "Android");
     	cap.setCapability("appPackage", "com.avegen.together");
     	cap.setCapability("appActivity", "com.avegen.together.MainActivity");
